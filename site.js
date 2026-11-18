@@ -19,8 +19,10 @@ async function refreshDownload() {
       link.href = `https://github.com/${repo}/releases/download/${tag}/Xsession.apk`;
     });
     document.querySelector('[data-release]').href = `https://github.com/${repo}/releases/tag/${tag}`;
+    document.querySelector('[data-source]').href = `https://github.com/${repo}/tree/${tag}`;
+    const name = latest.release.name?.replace(/^Xsession\s+/i, '') || `Сборка ${latest.version}`;
     document.querySelector('[data-version]').textContent =
-      `Android 8.0+ · Сборка ${latest.version}${latest.release.prerelease ? ' · Предрелиз' : ''}`;
+      `Android 8.0+ · ${name}${latest.release.prerelease ? ' · Предрелиз' : ''}`;
   } catch {
     // The static release links also work when the GitHub API is unavailable.
   }
